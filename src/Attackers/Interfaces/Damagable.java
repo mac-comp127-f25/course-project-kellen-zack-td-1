@@ -1,4 +1,4 @@
-package Attackers;
+package Attackers.Interfaces;
 
 /**
  * Interface for entities that can take damage

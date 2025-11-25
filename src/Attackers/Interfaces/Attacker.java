@@ -1,4 +1,4 @@
-package Attackers;
+package Attackers.Interfaces;
 
 public interface Attacker {
     

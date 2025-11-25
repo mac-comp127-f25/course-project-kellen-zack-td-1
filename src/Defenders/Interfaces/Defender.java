@@ -1,6 +1,6 @@
-package Defenders;
+package Defenders.Interfaces;
 
-import Attackers.Attacker;
+import Attackers.Interfaces.Attacker;
 
 /**
  * Interface outlining things all attackers can do
