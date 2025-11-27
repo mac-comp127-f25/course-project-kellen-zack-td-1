@@ -15,20 +15,14 @@ public class Arrow implements Shootable{
     private static final double HEIGHT = 8;
     private static final Point ARROW_SIZE = new Point(WIDTH, HEIGHT);
 
-    private ArrayList<Attacker> attackers;
     private Rectangle arrow;
 
-    public Arrow(ArrayList<Attacker> attackers, Archer archer){
-        this.attackers = new ArrayList<Attacker>(attackers);
+    public Arrow(Archer archer){
         this.arrow = new Rectangle(archer.getGraphics().getCenter(), ARROW_SIZE);
     }
 
-    public void shoot(){
+    public void shoot(Attacker attacker){
         
-    }
-
-    public Attacker findClosestTarget(){
-        return new Barbarian(0, 0);
     }
 
     public Rectangle getGraphics(){

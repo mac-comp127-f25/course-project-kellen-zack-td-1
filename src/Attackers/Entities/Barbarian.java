@@ -18,6 +18,7 @@ public class Barbarian implements Entity, Attacker, Damagable {
 
     public Barbarian(double x, double y){
         this.barbarian = new Ellipse(x, y, RADIUS*2, RADIUS*2);
+        barbarian.setCenter(x, y);
         barbarian.setFillColor(Color.RED);
         this.x = x;
         this.y = y;
@@ -41,6 +42,7 @@ public class Barbarian implements Entity, Attacker, Damagable {
     public void perish(){
         this.getGraphics().getCanvas().remove(this.getGraphics());
         this.isAlive = false;
+        
     }
 
     public int getHealth(){
