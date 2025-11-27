@@ -20,8 +20,12 @@ public class DefenderManager {
     public Archer createArcher(double x, double y){
         archer = new Archer(x, y);
         defenders.add(archer);
-        canvas.add(archer.getShadow());
         canvas.add(archer.getGraphics());
+        archer.addShadow();
         return archer;
+    }
+
+    public ArrayList<Defender> getDefenders(){
+        return defenders;
     }
 }

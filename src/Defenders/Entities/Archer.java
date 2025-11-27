@@ -54,6 +54,14 @@ public class Archer implements Entity, Defender {
         }
         return closest;
     }
+
+    public void removeShadow(){
+        archer.getCanvas().remove(rangeShadow);
+    }
+
+    public void addShadow(){
+        archer.getCanvas().add(rangeShadow);
+    }
     
     public int getCost(){
         return this.cost;
