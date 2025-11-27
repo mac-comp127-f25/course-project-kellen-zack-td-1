@@ -1,9 +1,7 @@
 package Defenders.Entities;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
-import Attackers.Entities.Barbarian;
 import Attackers.Interfaces.Attacker;
 import Defenders.Interfaces.Defender;
 import Overall.Entity;
@@ -37,10 +35,6 @@ public class Archer implements Entity, Defender {
 
     public void place(){
         
-    }
-
-    public Attacker findClosestTarget(ArrayList<Attacker> attackers){
-        return new Barbarian(0, 0);
     }
     
     public int getCost(){

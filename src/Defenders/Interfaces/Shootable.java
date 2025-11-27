@@ -4,5 +4,6 @@ import Attackers.Interfaces.Attacker;
 
 public interface Shootable {
     
-    void shoot(Attacker attacker);
+    void shoot();
+    Attacker findClosestTarget();
 }
