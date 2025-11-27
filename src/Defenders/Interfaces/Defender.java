@@ -1,5 +1,7 @@
 package Defenders.Interfaces;
 
+import java.util.ArrayList;
+
 import Attackers.Interfaces.Attacker;
 
 /**
@@ -11,6 +13,7 @@ public interface Defender {
     int getDamagePerShot();
     double getFireRate();
 
+    Attacker findClosestTarget(ArrayList<Attacker> attackers);
     void attack(Attacker target);
     void place();
 }
