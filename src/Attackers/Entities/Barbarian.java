@@ -5,6 +5,7 @@ import java.awt.Color;
 import Attackers.Interfaces.Attacker;
 import Attackers.Interfaces.Damagable;
 import Overall.Entity;
+import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
 
 public class Barbarian implements Entity, Attacker, Damagable {
@@ -15,11 +16,13 @@ public class Barbarian implements Entity, Attacker, Damagable {
     private int health;
     private boolean isAlive;
     private Ellipse barbarian;
+    private CanvasWindow canvas;
 
-    public Barbarian(double x, double y){
+    public Barbarian(double x, double y, CanvasWindow canvas){
         this.barbarian = new Ellipse(x, y, RADIUS*2, RADIUS*2);
         barbarian.setCenter(x, y);
         barbarian.setFillColor(Color.RED);
+        this.canvas = canvas;
         this.x = x;
         this.y = y;
         this.health = 20;
@@ -30,18 +33,18 @@ public class Barbarian implements Entity, Attacker, Damagable {
 
     }
 
-    public boolean takeDamage(int amount){
+    public void takeDamage(int amount){
         health-=amount;
         if(health <= 0){
             perish();
-            return true;
         }
-        return false;
     }
 
     public void perish(){
-        this.getGraphics().getCanvas().remove(this.getGraphics());
-        this.isAlive = false;
+        if(this.isAlive){
+            canvas.remove(barbarian);
+            this.isAlive = false;
+        }
         
     }
 

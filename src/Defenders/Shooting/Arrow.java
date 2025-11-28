@@ -17,9 +17,11 @@ public class Arrow implements Shootable{
 
     private Rectangle arrow;
     private Point arrowPosition;
+    private Archer archer;
 
     public Arrow(Archer archer){
         this.arrow = new Rectangle(archer.getGraphics().getCenter(), ARROW_SIZE);
+        this.archer = archer;
         arrowPosition = archer.getGraphics().getCenter();
         archer.getGraphics().getCanvas().add(arrow);
     }
@@ -27,7 +29,7 @@ public class Arrow implements Shootable{
     public void shoot(Attacker attacker){
         for(int i = 0; i < 2; i++){
             arrow.moveBy(new Point((attacker.getX()-arrowPosition.getX())/2, (arrowPosition.getY()-attacker.getY())/2));
-            arrow.getCanvas().draw();
+            archer.getGraphics().getCanvas().draw();
         }
 
     }

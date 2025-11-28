@@ -6,10 +6,9 @@ package Attackers.Interfaces;
 public interface Damagable {
     
     /**
-     * @param amount Damage tak
-     * @return True if the entity has died
+     * @param amount Damage taken
      */
-    boolean takeDamage(int amount);
+    void takeDamage(int amount);
 
     /**
      * 

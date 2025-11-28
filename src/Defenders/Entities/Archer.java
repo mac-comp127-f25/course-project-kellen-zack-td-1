@@ -42,7 +42,6 @@ public class Archer implements Entity, Defender {
             Arrow arrow = new Arrow(this);
             arrow.shoot(target);
             target.takeDamage(shotDamage);
-            System.out.println(target.takeDamage(shotDamage));
         }
     }
 
@@ -51,15 +50,16 @@ public class Archer implements Entity, Defender {
     }
 
     public Attacker findClosestTarget(ArrayList<Attacker> attackers){
-        Attacker closest = null;
+        Attacker closestAttacker = null;
         double closestDist = 10000000;
         for(Attacker attacker : attackers){
-            if(Math.hypot(Math.abs(this.getX()-attacker.getX()), Math.abs(this.getY()-attacker.getY())) > closestDist && Math.hypot(Math.abs(this.getX()-attacker.getX()), Math.abs(this.getY()-attacker.getY())) < this.getRangeRadius()){
-                closestDist = Math.hypot(Math.abs(this.getX()-attacker.getX()), Math.abs(this.getY()-attacker.getY()));
-                closest = attacker;
+            double distance = Math.hypot(Math.abs(rangeShadow.getX()-attacker.getX()), Math.abs(rangeShadow.getY()-attacker.getY()));
+            if(distance < closestDist && distance <= RANGE_RADIUS){
+                closestDist = distance;
+                closestAttacker = attacker;
             }
         }
-        return closest;
+        return closestAttacker;
     }
 
     public void removeShadow(){
