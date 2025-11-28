@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 import Attackers.Interfaces.Attacker;
 import Defenders.Interfaces.Defender;
+import Defenders.Shooting.Arrow;
 import Overall.Entity;
 import edu.macalester.graphics.Ellipse;
 
 public class Archer implements Entity, Defender {
     
     private static final double RADIUS = 10;
-    private static final int RANGE_RADIUS = 75;
+    private static final int RANGE_RADIUS = 500;
     private static final Color SHADOW_COLOR = new Color(128, 128, 128, 30);
 
     private int cost;
@@ -36,8 +37,12 @@ public class Archer implements Entity, Defender {
 
 
     public void attack(Attacker target){
-        if(target == null){
-            return;
+        System.out.println(target);
+        if(target != null){
+            Arrow arrow = new Arrow(this);
+            arrow.shoot(target);
+            target.takeDamage(shotDamage);
+            System.out.println(target.takeDamage(shotDamage));
         }
     }
 
@@ -47,9 +52,11 @@ public class Archer implements Entity, Defender {
 
     public Attacker findClosestTarget(ArrayList<Attacker> attackers){
         Attacker closest = null;
+        double closestDist = 10000000;
         for(Attacker attacker : attackers){
-            if(Math.hypot(Math.abs(1), Math.abs(1))==1){
-                return closest;
+            if(Math.hypot(Math.abs(this.getX()-attacker.getX()), Math.abs(this.getY()-attacker.getY())) > closestDist && Math.hypot(Math.abs(this.getX()-attacker.getX()), Math.abs(this.getY()-attacker.getY())) < this.getRangeRadius()){
+                closestDist = Math.hypot(Math.abs(this.getX()-attacker.getX()), Math.abs(this.getY()-attacker.getY()));
+                closest = attacker;
             }
         }
         return closest;

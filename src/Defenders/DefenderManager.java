@@ -2,6 +2,7 @@ package Defenders;
 
 import java.util.ArrayList;
 
+import Attackers.Interfaces.Attacker;
 import Defenders.Entities.Archer;
 import Defenders.Interfaces.Defender;
 import edu.macalester.graphics.CanvasWindow;
@@ -23,6 +24,12 @@ public class DefenderManager {
         canvas.add(archer.getGraphics());
         archer.addShadow();
         return archer;
+    }
+
+    public void attack(ArrayList<Attacker> attackers){
+        for(Defender defender : defenders){
+            defender.attack(defender.findClosestTarget(attackers));
+        }
     }
 
     public ArrayList<Defender> getDefenders(){

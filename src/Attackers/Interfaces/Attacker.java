@@ -6,5 +6,9 @@ public interface Attacker {
 
     int getHealth();
     boolean isAlive();
+    double getX();
+    double getY();
+
+    boolean takeDamage(int amount);
 
 }
