@@ -9,16 +9,16 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.ui.Button;
 
 public class TowerUI {
-    
+    private Random random = new Random();
+
     private CanvasWindow canvas;
     private Button addArcherButton;
+    private Button addAttackersButton;
     private DefenderManager defenderManager;
     private AttackerManager attackerManager;
     private Archer archer;
     
     public TowerUI(int width, int height, int amount){
-        
-        Random random = new Random();
         
         canvas = new CanvasWindow("Tower Defense Game", width, height);
         attackerManager = new AttackerManager(canvas);
@@ -43,7 +43,7 @@ public class TowerUI {
         setUpButtons();
         canvas.animate(() -> {
             defenderManager.attack(attackerManager.getAttackers());
-            attackerManager.move();
+            //attackerManager.move();
         });
 
     }
@@ -57,6 +57,26 @@ public class TowerUI {
                 handleButtons();
             }
         });
+
+        addAttackersButton = new Button("Add Attackers");
+        addAttackersButton.setPosition(0, addArcherButton.getHeight());
+        canvas.add(addAttackersButton);
+        addAttackersButton.onClick(() -> {
+            for(int i = 0; i < 10; i++){
+                attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()));
+            }
+        });
+
+        Button moveAttackers = new Button("Move Attackers");
+        moveAttackers.setPosition(0, addAttackersButton.getHeight()*2);
+        canvas.add(moveAttackers);
+        moveAttackers.onClick(() -> {
+            canvas.animate(() -> {
+                attackerManager.move();
+            });
+        });
+
+
     }
 
     public void handleButtons(){
