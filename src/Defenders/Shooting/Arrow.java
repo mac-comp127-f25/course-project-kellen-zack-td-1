@@ -1,5 +1,6 @@
 package Defenders.Shooting;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import Attackers.Entities.Barbarian;
@@ -11,26 +12,31 @@ import edu.macalester.graphics.Rectangle;
 
 public class Arrow implements Shootable{
     
-    private static final double WIDTH = 4;
-    private static final double HEIGHT = 4;
-    private static final Point ARROW_SIZE = new Point(WIDTH, HEIGHT);
+    private static final double SQUARE_WIDTH = 6;
+    private static final Point ARROW_SIZE = new Point(SQUARE_WIDTH, SQUARE_WIDTH);
 
     private Rectangle arrow;
     private Point arrowPosition;
     private Archer archer;
 
     public Arrow(Archer archer){
-        this.arrow = new Rectangle(archer.getGraphics().getCenter(), ARROW_SIZE);
+        arrow = new Rectangle(new Point(0, 0), ARROW_SIZE);
+        arrow.setCenter(archer.getGraphics().getCenter());
+        arrow.setFillColor(Color.PINK);
         this.archer = archer;
         arrowPosition = archer.getGraphics().getCenter();
         archer.getGraphics().getCanvas().add(arrow);
     }
 
     public void shoot(Attacker attacker){
-        for(int i = 0; i < 2; i++){
-            arrow.moveBy(new Point((attacker.getX()-arrowPosition.getX())/2, (attacker.getY()-arrowPosition.getY())/2));
+        final int SPEED = 5;
+        for(int i = 0; i < SPEED; i++){
+            double moveX = (attacker.getX()-arrowPosition.getX())/SPEED;
+            double moveY = (attacker.getY()-arrowPosition.getY())/SPEED;
+            arrow.moveBy(moveX, moveY);
             archer.getGraphics().getCanvas().draw();
         }
+        archer.getGraphics().getCanvas().remove(arrow);
     }
 
     public Rectangle getGraphics(){

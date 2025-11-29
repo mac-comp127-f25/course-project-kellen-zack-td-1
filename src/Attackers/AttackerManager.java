@@ -25,6 +25,12 @@ public class AttackerManager {
         return barbarian;
     }
 
+    public void move(){
+        for(Attacker attacker : attackers){
+            attacker.move();
+        }
+    }
+
     public ArrayList<Attacker> getAttackers(){
         return attackers;
     }

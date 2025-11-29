@@ -8,7 +8,6 @@ import Defenders.Interfaces.Defender;
 import Defenders.Shooting.Arrow;
 import Overall.Entity;
 import edu.macalester.graphics.Ellipse;
-import edu.macalester.graphics.Point;
 
 public class Archer implements Entity, Defender {
     
@@ -55,8 +54,8 @@ public class Archer implements Entity, Defender {
         Attacker closestAttacker = null;
         double closestDist = RANGE_RADIUS;
         for(Attacker attacker : attackers){
-            double distance = Math.hypot(Math.abs(archer.getX()-attacker.getX()), Math.abs(archer.getY()-attacker.getY()));
-            if(distance < closestDist){
+            double distance = Math.hypot(Math.abs(archer.getX()-attacker.getX()), Math.abs(archer.getY()-attacker.getY()))+RADIUS;
+            if(distance <= closestDist){
                 closestDist = distance;
                 closestAttacker = attacker;
             }
