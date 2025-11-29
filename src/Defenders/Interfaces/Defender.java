@@ -14,7 +14,7 @@ public interface Defender {
     double getFireRate();
 
     void attack(Attacker target);
-    void place();
+    void place(double x, double y);
     void removeShadow();
     void addShadow();
     Attacker findClosestTarget(ArrayList<Attacker> attackers);

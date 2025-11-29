@@ -22,6 +22,7 @@ public class Archer implements Entity, Defender {
     private Ellipse rangeShadow;
     private double x;
     private double y;
+    private boolean locked;
 
     public Archer(double x, double y){
         archer = new Ellipse(x, y, RADIUS*2, RADIUS*2);
@@ -35,6 +36,7 @@ public class Archer implements Entity, Defender {
         this.cost = 50;
         this.shotDamage = 20;
         this.fireRate = 1;
+        this.locked = false;
     }
 
 
@@ -46,8 +48,19 @@ public class Archer implements Entity, Defender {
         }
     }
 
-    public void place(){
-        
+    public void move(double x, double y){
+        this.getGraphics().setCenter(x, y);
+        this.getShadow().setCenter(x, y);
+        this.x = x;
+        this.y = y;
+    }
+
+    public void place(double x, double y){
+        this.getGraphics().setCenter(x, y);
+        this.getShadow().setCenter(x, y);
+        this.x = x;
+        this.y = y;
+        locked = true;
     }
 
     public Attacker findClosestTarget(ArrayList<Attacker> attackers){
@@ -93,6 +106,10 @@ public class Archer implements Entity, Defender {
 
     public double getY(){
         return y;
+    }
+
+    public boolean isLocked(){
+        return locked;
     }
 
     public Ellipse getGraphics(){
