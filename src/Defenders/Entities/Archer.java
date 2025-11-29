@@ -40,11 +40,11 @@ public class Archer implements Entity, Defender {
     }
 
 
-    public void attack(Attacker target){
+    public void attack(Attacker target, int money){
         if(target != null){
             Arrow arrow = new Arrow(this);
             arrow.shoot(target);
-            target.takeDamage(shotDamage);
+            target.takeDamage(shotDamage, money);
         }
     }
 

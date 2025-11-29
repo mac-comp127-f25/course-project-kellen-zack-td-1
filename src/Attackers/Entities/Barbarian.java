@@ -12,6 +12,7 @@ import edu.macalester.graphics.Ellipse;
 
 public class Barbarian implements Entity, Attacker, Damagable {
     private static final double RADIUS = 10;
+    private static final int COST = 25;
     Random random = new Random();
     
     private double x;
@@ -25,15 +26,15 @@ public class Barbarian implements Entity, Attacker, Damagable {
     private double moveY = random.nextDouble(-10, 10);
 
     public Barbarian(double x, double y, CanvasWindow canvas, ArrayList<Attacker> attackers){
-        this.barbarian = new Ellipse(x, y, RADIUS*2, RADIUS*2);
-        barbarian.setCenter(x, y);
-        barbarian.setFillColor(Color.RED);
         this.canvas = canvas;
         this.attackers = attackers;
         this.x = x;
         this.y = y;
-        this.health = 20;
-        this.isAlive = true;
+        barbarian = new Ellipse(x, y, RADIUS*2, RADIUS*2);
+        barbarian.setCenter(x, y);
+        barbarian.setFillColor(Color.RED);
+        health = 20;
+        isAlive = true;
     }
     
     public void move(){
@@ -43,10 +44,11 @@ public class Barbarian implements Entity, Attacker, Damagable {
         barbarian.getCanvas().draw();
     }
 
-    public void takeDamage(int amount){
+    public void takeDamage(int amount, int money){
         health-=amount;
         if(health <= 0){
             perish();
+            money+=COST;
         }
     }
 

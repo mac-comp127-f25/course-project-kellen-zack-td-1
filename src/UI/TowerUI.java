@@ -9,6 +9,8 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.ui.Button;
 
 public class TowerUI {
+    private static final int STARTING_MONEY = 100;
+    
     private Random random = new Random();
 
     private CanvasWindow canvas;
@@ -17,19 +19,21 @@ public class TowerUI {
     private DefenderManager defenderManager;
     private AttackerManager attackerManager;
     private Archer archer;
+    private int money;
     
     public TowerUI(int width, int height, int amount){
         
         canvas = new CanvasWindow("Tower Defense Game", width, height);
         attackerManager = new AttackerManager(canvas);
         defenderManager = new DefenderManager(canvas);
+        money = STARTING_MONEY;
 
         for(int i = 0; i < amount; i++){
             attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()));
         }
         defenderManager.createArcher(canvas.getWidth()*2/3, canvas.getHeight()/2);
         canvas.animate(() -> {
-            defenderManager.attack(attackerManager.getAttackers());
+            defenderManager.attack(attackerManager.getAttackers(), money);
             attackerManager.move();
         });
 
@@ -39,10 +43,12 @@ public class TowerUI {
         canvas = new CanvasWindow("Tower Defense Game", width, height);
         attackerManager = new AttackerManager(canvas);
         defenderManager = new DefenderManager(canvas);
+        money = STARTING_MONEY;
+        
 
         setUpButtons();
         canvas.animate(() -> {
-            defenderManager.attack(attackerManager.getAttackers());
+            defenderManager.attack(attackerManager.getAttackers(), money);
         });
 
     }

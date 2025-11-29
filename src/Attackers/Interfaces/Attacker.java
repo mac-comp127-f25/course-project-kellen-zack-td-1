@@ -9,6 +9,6 @@ public interface Attacker {
     double getX();
     double getY();
 
-    void takeDamage(int amount);
+    void takeDamage(int amount, int money);
 
 }

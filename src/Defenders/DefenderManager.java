@@ -26,9 +26,9 @@ public class DefenderManager {
         return archer;
     }
 
-    public void attack(ArrayList<Attacker> attackers){
+    public void attack(ArrayList<Attacker> attackers, int money){
         for(Defender defender : defenders){
-            defender.attack(defender.findClosestTarget(attackers));
+            defender.attack(defender.findClosestTarget(attackers), money);
         }
     }
 
