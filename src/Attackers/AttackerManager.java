@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import Attackers.Entities.Barbarian;
 import Attackers.Interfaces.Attacker;
-import Defenders.Interfaces.Defender;
 import edu.macalester.graphics.CanvasWindow;
 
 public class AttackerManager {

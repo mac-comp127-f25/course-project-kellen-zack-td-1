@@ -1,9 +1,7 @@
 package Defenders.Shooting;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
-import Attackers.Entities.Barbarian;
 import Attackers.Interfaces.Attacker;
 import Defenders.Entities.Archer;
 import Defenders.Interfaces.Shootable;

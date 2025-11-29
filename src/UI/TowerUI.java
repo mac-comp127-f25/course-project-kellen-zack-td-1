@@ -43,7 +43,6 @@ public class TowerUI {
         setUpButtons();
         canvas.animate(() -> {
             defenderManager.attack(attackerManager.getAttackers());
-            //attackerManager.move();
         });
 
     }
@@ -53,9 +52,7 @@ public class TowerUI {
         canvas.add(addArcherButton);
         addArcherButton.onClick(() -> {
             archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
-            if(!archer.isLocked()){
-                handleButtons();
-            }
+            handleArcherButton();
         });
 
         addAttackersButton = new Button("Add Attackers");
@@ -75,11 +72,9 @@ public class TowerUI {
                 attackerManager.move();
             });
         });
-
-
     }
 
-    public void handleButtons(){
+    public void handleArcherButton(){
         canvas.onDrag(e -> {
             archer.move(e.getPosition().getX(), e.getPosition().getY());
         });

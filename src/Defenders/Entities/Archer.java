@@ -13,7 +13,7 @@ public class Archer implements Entity, Defender {
     
     private static final double RADIUS = 10;
     private static final int RANGE_RADIUS = 200;
-    private static final Color SHADOW_COLOR = new Color(128, 128, 128, 30);
+    private static final Color SHADOW_COLOR = new Color(128, 128, 128, 20);
 
     private int cost;
     private int shotDamage;
@@ -49,18 +49,22 @@ public class Archer implements Entity, Defender {
     }
 
     public void move(double x, double y){
-        this.getGraphics().setCenter(x, y);
-        this.getShadow().setCenter(x, y);
-        this.x = x;
-        this.y = y;
+        if(!locked){
+            this.getGraphics().setCenter(x, y);
+            this.getShadow().setCenter(x, y);
+            this.x = x;
+            this.y = y;
+        }
     }
 
     public void place(double x, double y){
-        this.getGraphics().setCenter(x, y);
-        this.getShadow().setCenter(x, y);
-        this.x = x;
-        this.y = y;
-        locked = true;
+        if(!locked){
+            this.getGraphics().setCenter(x, y);
+            this.getShadow().setCenter(x, y);
+            this.x = x;
+            this.y = y;
+            locked = true;
+        }
     }
 
     public Attacker findClosestTarget(ArrayList<Attacker> attackers){
