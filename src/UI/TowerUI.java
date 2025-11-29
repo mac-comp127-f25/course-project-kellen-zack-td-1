@@ -8,7 +8,7 @@ import edu.macalester.graphics.CanvasWindow;
 
 public class TowerUI {
     
-    public TowerUI(int width, int height){
+    public TowerUI(int width, int height, int amount){
         
         Random random = new Random();
         
@@ -19,7 +19,7 @@ public class TowerUI {
         // canvas.onClick(e -> {
         //     defenderManager.createArcher(e.getPosition().getX(), e.getPosition().getY(), attackerManager.getAttackers());
         // });
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < amount; i++){
             attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()));
         }
         defenderManager.createArcher(canvas.getWidth()*2/3, canvas.getHeight()/2);

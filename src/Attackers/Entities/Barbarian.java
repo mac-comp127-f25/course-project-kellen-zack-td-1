@@ -1,6 +1,7 @@
 package Attackers.Entities;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import Attackers.Interfaces.Attacker;
 import Attackers.Interfaces.Damagable;
@@ -17,12 +18,14 @@ public class Barbarian implements Entity, Attacker, Damagable {
     private boolean isAlive;
     private Ellipse barbarian;
     private CanvasWindow canvas;
+    private ArrayList<Attacker> attackers;
 
-    public Barbarian(double x, double y, CanvasWindow canvas){
+    public Barbarian(double x, double y, CanvasWindow canvas, ArrayList<Attacker> attackers){
         this.barbarian = new Ellipse(x, y, RADIUS*2, RADIUS*2);
         barbarian.setCenter(x, y);
         barbarian.setFillColor(Color.RED);
         this.canvas = canvas;
+        this.attackers = attackers;
         this.x = x;
         this.y = y;
         this.health = 20;
@@ -43,6 +46,7 @@ public class Barbarian implements Entity, Attacker, Damagable {
     public void perish(){
         if(this.isAlive){
             canvas.remove(barbarian);
+            attackers.remove(this);
             this.isAlive = false;
         }
         

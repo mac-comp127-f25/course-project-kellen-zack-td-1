@@ -19,7 +19,7 @@ public class AttackerManager {
     }
 
     public Barbarian createBarbarian(double x, double y){
-        barbarian = new Barbarian(x, y, canvas);
+        barbarian = new Barbarian(x, y, canvas, attackers);
         attackers.add(barbarian);
         canvas.add(barbarian.getGraphics());
         return barbarian;

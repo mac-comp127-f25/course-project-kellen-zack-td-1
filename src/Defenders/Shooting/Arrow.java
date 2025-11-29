@@ -28,10 +28,9 @@ public class Arrow implements Shootable{
 
     public void shoot(Attacker attacker){
         for(int i = 0; i < 2; i++){
-            arrow.moveBy(new Point((attacker.getX()-arrowPosition.getX())/2, (arrowPosition.getY()-attacker.getY())/2));
+            arrow.moveBy(new Point((attacker.getX()-arrowPosition.getX())/2, (attacker.getY()-arrowPosition.getY())/2));
             archer.getGraphics().getCanvas().draw();
         }
-
     }
 
     public Rectangle getGraphics(){
