@@ -14,8 +14,9 @@ public class Archer implements Entity, Defender {
     private static final double RADIUS = 10;
     private static final int RANGE_RADIUS = 200;
     private static final Color SHADOW_COLOR = new Color(128, 128, 128, 20);
+    private static final int COST = 50;
 
-    private int cost;
+
     private int shotDamage;
     private double fireRate;
     private Ellipse archer;
@@ -33,10 +34,9 @@ public class Archer implements Entity, Defender {
         archer.setFillColor(Color.GREEN);
         this.x = x;
         this.y = y;
-        this.cost = 50;
-        this.shotDamage = 20;
-        this.fireRate = 1;
-        this.locked = false;
+        shotDamage = 20;
+        fireRate = 1;
+        locked = false;
     }
 
 
@@ -89,7 +89,7 @@ public class Archer implements Entity, Defender {
     }
     
     public int getCost(){
-        return this.cost;
+        return COST;
     }
 
     public int getRangeRadius(){

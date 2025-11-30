@@ -20,24 +20,6 @@ public class TowerUI {
     private AttackerManager attackerManager;
     private Archer archer;
     private int money;
-    
-    public TowerUI(int width, int height, int amount){
-        
-        canvas = new CanvasWindow("Tower Defense Game", width, height);
-        attackerManager = new AttackerManager(canvas);
-        defenderManager = new DefenderManager(canvas);
-        money = STARTING_MONEY;
-
-        for(int i = 0; i < amount; i++){
-            attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()));
-        }
-        defenderManager.createArcher(canvas.getWidth()*2/3, canvas.getHeight()/2);
-        canvas.animate(() -> {
-            defenderManager.attack(attackerManager.getAttackers(), money);
-            attackerManager.move();
-        });
-
-    }
 
     public TowerUI(int width, int height){
         canvas = new CanvasWindow("Tower Defense Game", width, height);
@@ -57,8 +39,8 @@ public class TowerUI {
         addArcherButton = new Button("Archer: $50");
         canvas.add(addArcherButton);
         addArcherButton.onClick(() -> {
-            archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
-            handleArcherButton();
+                archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
+                handleArcherButton();
         });
 
         addAttackersButton = new Button("Add Attackers");
@@ -86,7 +68,6 @@ public class TowerUI {
         });
         canvas.onMouseUp(e -> {
             archer.place(e.getPosition().getX(), e.getPosition().getY());
-            System.out.println(archer.isLocked());
         });
     }
 }
