@@ -14,10 +14,11 @@ public class Archer implements Entity, Defender {
     private static final double RADIUS = 10;
     private static final int RANGE_RADIUS = 200;
     private static final Color SHADOW_COLOR = new Color(128, 128, 128, 20);
-    private static final int COST = 50;
+    private static final Color ARCHER_COLOR = new Color(97, 29, 173);
+    private static final int COST = 50; 
+    private static final int SHOT_DAMAGE = 20;
 
 
-    private int shotDamage;
     private double fireRate;
     private Ellipse archer;
     private Ellipse rangeShadow;
@@ -31,10 +32,9 @@ public class Archer implements Entity, Defender {
         rangeShadow = new Ellipse(x, y, RANGE_RADIUS*2, RANGE_RADIUS*2);
         rangeShadow.setCenter(x, y);
         rangeShadow.setFillColor(SHADOW_COLOR);
-        archer.setFillColor(Color.GREEN);
+        archer.setFillColor(ARCHER_COLOR);
         this.x = x;
         this.y = y;
-        shotDamage = 20;
         fireRate = 1;
         locked = false;
     }
@@ -44,7 +44,7 @@ public class Archer implements Entity, Defender {
         if(target != null){
             Arrow arrow = new Arrow(this);
             arrow.shoot(target);
-            target.takeDamage(shotDamage, money);
+            target.takeDamage(SHOT_DAMAGE, money);
         }
     }
 
@@ -71,7 +71,7 @@ public class Archer implements Entity, Defender {
         Attacker closestAttacker = null;
         double closestDist = RANGE_RADIUS;
         for(Attacker attacker : attackers){
-            double distance = Math.hypot(Math.abs(archer.getX()-attacker.getX()), Math.abs(archer.getY()-attacker.getY()))+RADIUS;
+            double distance = Math.hypot(Math.abs(archer.getX()-attacker.getX()), Math.abs(archer.getY()-attacker.getY()))-RADIUS;
             if(distance <= closestDist){
                 closestDist = distance;
                 closestAttacker = attacker;
@@ -97,7 +97,7 @@ public class Archer implements Entity, Defender {
     }
 
     public int getDamagePerShot(){
-        return this.shotDamage;
+        return this.SHOT_DAMAGE;
     }
 
     public double getFireRate(){

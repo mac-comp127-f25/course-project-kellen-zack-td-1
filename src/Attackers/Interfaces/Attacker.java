@@ -2,6 +2,7 @@ package Attackers.Interfaces;
 
 public interface Attacker {
     
+    void randomizeMovement();
     void move();
 
     int getHealth();
@@ -10,5 +11,6 @@ public interface Attacker {
     double getY();
 
     void takeDamage(int amount, int money);
+    boolean checkBounds();
 
 }
