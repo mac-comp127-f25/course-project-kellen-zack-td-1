@@ -97,7 +97,7 @@ public class Archer implements Entity, Defender {
     }
 
     public int getDamagePerShot(){
-        return this.SHOT_DAMAGE;
+        return SHOT_DAMAGE;
     }
 
     public double getFireRate(){
