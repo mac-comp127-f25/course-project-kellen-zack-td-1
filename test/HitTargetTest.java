@@ -33,6 +33,9 @@ public class HitTargetTest {
         setUpButtons();
     }
 
+    /**
+     * Sets up the buttons and their functionalities
+     */
     public void setUpButtons(){
         addArcherButton = new Button("Archer: $50");
         canvas.add(addArcherButton);
@@ -61,6 +64,9 @@ public class HitTargetTest {
         });
     }
 
+    /**
+     * Handles the placement of archers
+     */
     public void handleArcherButton(){
         canvas.onDrag(e -> {
             archer.move(e.getPosition().getX(), e.getPosition().getY());

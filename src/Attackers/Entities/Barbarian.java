@@ -13,8 +13,9 @@ import edu.macalester.graphics.Ellipse;
 public class Barbarian implements Entity, Attacker, Damagable {
     private static final double RADIUS = 10;
     private static final int COST = 25;
-    private static final int STARTING_HEALTH = 1000;
-    
+    private static final int STARTING_HEALTH = 100;
+    private static final double SPEED = 12;
+
     Random random = new Random();
     
     private double x;
@@ -47,7 +48,7 @@ public class Barbarian implements Entity, Attacker, Damagable {
     }
 
     public void move(){
-        
+        //Find a way to use a point coordinate system to move from point to point one after another
     }
 
     public void takeDamage(int amount, int money){
