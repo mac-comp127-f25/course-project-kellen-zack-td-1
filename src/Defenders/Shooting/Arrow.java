@@ -32,6 +32,7 @@ public class Arrow implements Shootable{
             double moveX = (attacker.getX()-arrowPosition.getX())/SPEED;
             double moveY = (attacker.getY()-arrowPosition.getY())/SPEED;
             arrow.moveBy(moveX, moveY);
+            archer.getGraphics().getCanvas().draw();
         }
         archer.getGraphics().getCanvas().remove(arrow);
     }
