@@ -26,15 +26,15 @@ public class Arrow implements Shootable{
         archer.getGraphics().getCanvas().add(arrow);
     }
 
+
+    //TODO: Fingure out math for shooting at moving targets
     public void shoot(Attacker attacker){
         final int SPEED = 15;
-        for(int i = 0; i < SPEED; i++){
-            double moveX = (attacker.getX()-arrowPosition.getX())/SPEED;
-            double moveY = (attacker.getY()-arrowPosition.getY())/SPEED;
-            arrow.moveBy(moveX, moveY);
-            archer.getGraphics().getCanvas().draw();
-        }
-        archer.getGraphics().getCanvas().remove(arrow);
+        double moveX = (attacker.getX()-arrowPosition.getX());// /SPEED;
+        double moveY = (attacker.getY()-arrowPosition.getY());// /SPEED;
+        arrow.moveBy(moveX, moveY);
+        archer.getGraphics().getCanvas().draw();
+        //archer.getGraphics().getCanvas().remove(arrow);
     }
 
     public Rectangle getGraphics(){

@@ -27,6 +27,12 @@ public class AttackerManager {
 
     public void move(){
         for(Attacker attacker : attackers){
+            attacker.move();
+        }
+    }
+
+    public void moveRandom(){
+        for(Attacker attacker : attackers){
             attacker.randomizeMovement();
             if(attacker.checkBounds()){
                 return;

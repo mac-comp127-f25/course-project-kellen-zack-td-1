@@ -5,7 +5,6 @@ import edu.macalester.graphics.ui.Button;
 import edu.macalester.graphics.GraphicsText;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import Attackers.AttackerManager;
 import Attackers.Interfaces.Attacker;
@@ -24,9 +23,8 @@ public class TowerDefenseGame {
     private static final Color PATH_COLOR = Color.GRAY;
 
     private CanvasWindow canvas;
-    private ArrayList<Attacker> attackers;
     private Button addArcherButton;
-    private Button addAttackersButton;
+    private Button nextWaveButton;
     private DefenderManager defenderManager;
     private AttackerManager attackerManager;
     private Archer archer = new Archer(0, 0);
@@ -36,21 +34,20 @@ public class TowerDefenseGame {
     public TowerDefenseGame(){
         canvas = new CanvasWindow("Tower Defense Game", 1500, 850);
         canvas.setBackground(BACKGROUND_COLOR);
-        AttackerManager attackerManager = new AttackerManager(canvas);
+        makePath();
+
         attackerManager = new AttackerManager(canvas);
         defenderManager = new DefenderManager(canvas);
-
-        makePath();
-        setUpButtons();
-        canvas.add(moneyText);
-        moneyText.setScale(2);
-        moneyText.setPosition(canvas.getWidth()/2, canvas.getHeight()/30);
 
         for(int i = -10; i > -1500; i-=10){
             attackerManager.createBarbarian(120, i, bank);
         }
 
-        //moveAttackers();
+        setUpButtons();
+
+        canvas.add(moneyText);
+        moneyText.setScale(2);
+        moneyText.setPosition(canvas.getWidth()/2, canvas.getHeight()/30);
     }
 
     /**
@@ -58,9 +55,8 @@ public class TowerDefenseGame {
      */
     public void moveAttackers(){
         canvas.animate(() -> {
-            for(Attacker attacker : attackers){
-                attacker.move();
-            }
+            defenderManager.attack(attackerManager.getAttackers());
+            attackerManager.move();
         });
     }
 
@@ -69,6 +65,7 @@ public class TowerDefenseGame {
      */
     public void setUpButtons(){
         addArcherButton = new Button("Archer: $50");
+        addArcherButton.setPosition(canvas.getWidth()-addArcherButton.getWidth(), 5);
         canvas.add(addArcherButton);
         addArcherButton.onClick(() -> {
             if(bank.getMoney() >= archer.getCost()){
@@ -76,6 +73,13 @@ public class TowerDefenseGame {
                 archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
                 handleArcherButton();
             }
+        });
+
+        nextWaveButton = new Button("Next Wave");
+        nextWaveButton.setPosition(0, 0);
+        canvas.add(nextWaveButton);
+        nextWaveButton.onClick(() -> {
+            moveAttackers();
         });
     }
 

@@ -68,7 +68,7 @@ public class HitTargetTest {
         moveAttackers.onClick(() -> {
             canvas.animate(() -> {
                 defenderManager.attack(attackerManager.getAttackers());
-                attackerManager.move();
+                attackerManager.moveRandom();
             });
         });
     }
