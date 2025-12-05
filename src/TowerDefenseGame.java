@@ -7,7 +7,6 @@ import edu.macalester.graphics.GraphicsText;
 import java.awt.Color;
 
 import Attackers.AttackerManager;
-import Attackers.Interfaces.Attacker;
 import Defenders.DefenderManager;
 import Defenders.Entities.Archer;
 import UI.Bank;
@@ -40,7 +39,7 @@ public class TowerDefenseGame {
         defenderManager = new DefenderManager(canvas);
 
         for(int i = -10; i > -1500; i-=10){
-            attackerManager.createBarbarian(120, i, bank);
+            attackerManager.createBarbarian(120, i);
         }
 
         setUpButtons();

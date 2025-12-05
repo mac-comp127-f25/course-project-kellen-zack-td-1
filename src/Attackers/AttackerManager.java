@@ -18,8 +18,8 @@ public class AttackerManager {
         this.canvas = canvas;
     }
 
-    public Barbarian createBarbarian(double x, double y, Bank bank){
-        barbarian = new Barbarian(x, y, canvas, attackers, bank);
+    public Barbarian createBarbarian(double x, double y){
+        barbarian = new Barbarian(x, y, canvas, attackers);
         attackers.add(barbarian);
         canvas.add(barbarian.getGraphics());
         return barbarian;

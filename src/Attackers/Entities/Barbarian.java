@@ -25,12 +25,12 @@ public class Barbarian implements Entity, Attacker, Damagable {
     private boolean isAlive;
     private Ellipse barbarian;
     private CanvasWindow canvas;
+    private Bank bank = new Bank();
     private ArrayList<Attacker> attackers;
     private double moveX = random.nextDouble(-10, 10);
     private double moveY = random.nextDouble(-10, 10);
-    private Bank bank;
 
-    public Barbarian(double x, double y, CanvasWindow canvas, ArrayList<Attacker> attackers, Bank bank){
+    public Barbarian(double x, double y, CanvasWindow canvas, ArrayList<Attacker> attackers){
         this.canvas = canvas;
         this.attackers = attackers;
         this.x = x;
@@ -40,7 +40,6 @@ public class Barbarian implements Entity, Attacker, Damagable {
         barbarian.setFillColor(Color.RED);
         health = STARTING_HEALTH;
         isAlive = true;
-        this.bank = bank;
     }
     
     public void randomizeMovement(){

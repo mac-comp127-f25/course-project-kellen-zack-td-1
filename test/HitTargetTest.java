@@ -58,7 +58,7 @@ public class HitTargetTest {
         canvas.add(addAttackersButton);
         addAttackersButton.onClick(() -> {
             for(int i = 0; i < 10; i++){
-                attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()), bank);
+                attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()));
             }
         });
 

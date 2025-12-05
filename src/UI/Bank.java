@@ -4,13 +4,16 @@ import edu.macalester.graphics.GraphicsText;
 
 public class Bank {
     
-    private int money;
+    private static int money;
     private GraphicsText moneyText = new GraphicsText("");
     
-    public Bank(int money){
-
-        this.money = money;
+    public Bank(int startingMoney){
+        money = startingMoney;
         moneyText.setText("$" + money);
+    }
+
+    public Bank(){
+
     }
 
     public int addMoney(int amount){

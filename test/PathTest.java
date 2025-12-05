@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import Attackers.AttackerManager;
 import Attackers.Interfaces.Attacker;
-import UI.Bank;
 
 public class PathTest {
     public static void main(String[] args) {
@@ -19,7 +18,6 @@ public class PathTest {
 
     private CanvasWindow canvas;
     private ArrayList<Attacker> attackers;
-    private Bank bank = new Bank(100);
 
     public PathTest(){
         canvas = new CanvasWindow("Path Test", 1500, 850);
@@ -30,7 +28,7 @@ public class PathTest {
         makePath();
 
         for(int i = -10; i > -1500; i-=10){
-            attackerManager.createBarbarian(120, i, bank);
+            attackerManager.createBarbarian(120, i);
         }
 
         moveAttackers();
