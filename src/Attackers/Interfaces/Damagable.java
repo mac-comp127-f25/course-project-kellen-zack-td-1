@@ -8,7 +8,7 @@ public interface Damagable {
     /**
      * @param amount Damage taken
      */
-    void takeDamage(int amount, int money);
+    void takeDamage(int amount);
 
     /**
      * 

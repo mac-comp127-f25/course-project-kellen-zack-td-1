@@ -3,7 +3,9 @@ import java.util.Random;
 import Attackers.AttackerManager;
 import Defenders.DefenderManager;
 import Defenders.Entities.Archer;
+import UI.Bank;
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.ui.Button;
 
 public class HitTargetTest {
@@ -20,17 +22,21 @@ public class HitTargetTest {
     private Button addAttackersButton;
     private DefenderManager defenderManager;
     private AttackerManager attackerManager;
-    private Archer archer;
-    private int money;
+    private Archer archer = new Archer(0, 0);
+    private Bank bank = new Bank(STARTING_MONEY);
+    GraphicsText moneyText = bank.getGraphics();
 
     public HitTargetTest(int width, int height){
         canvas = new CanvasWindow("Hit Target Test", width, height);
         attackerManager = new AttackerManager(canvas);
         defenderManager = new DefenderManager(canvas);
-        money = STARTING_MONEY;
         
 
         setUpButtons();
+        canvas.add(moneyText);
+        moneyText.setScale(2);
+        moneyText.setPosition(canvas.getWidth()/2, canvas.getHeight()/30);
+        
     }
 
     /**
@@ -40,8 +46,11 @@ public class HitTargetTest {
         addArcherButton = new Button("Archer: $50");
         canvas.add(addArcherButton);
         addArcherButton.onClick(() -> {
+            if(bank.getMoney() >= archer.getCost()){
+                bank.subtractMoney(archer.getCost());
                 archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
                 handleArcherButton();
+            }
         });
 
         addAttackersButton = new Button("Add Attackers");
@@ -49,7 +58,7 @@ public class HitTargetTest {
         canvas.add(addAttackersButton);
         addAttackersButton.onClick(() -> {
             for(int i = 0; i < 10; i++){
-                attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()));
+                attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()), bank);
             }
         });
 
@@ -58,7 +67,7 @@ public class HitTargetTest {
         canvas.add(moveAttackers);
         moveAttackers.onClick(() -> {
             canvas.animate(() -> {
-                defenderManager.attack(attackerManager.getAttackers(), money);
+                defenderManager.attack(attackerManager.getAttackers());
                 attackerManager.move();
             });
         });

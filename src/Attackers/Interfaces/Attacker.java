@@ -10,7 +10,7 @@ public interface Attacker {
     double getX();
     double getY();
 
-    void takeDamage(int amount, int money);
+    void takeDamage(int amount);
     boolean checkBounds();
 
 }

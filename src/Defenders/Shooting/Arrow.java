@@ -27,7 +27,7 @@ public class Arrow implements Shootable{
     }
 
     public void shoot(Attacker attacker){
-        final int SPEED = 5;
+        final int SPEED = 15;
         for(int i = 0; i < SPEED; i++){
             double moveX = (attacker.getX()-arrowPosition.getX())/SPEED;
             double moveY = (attacker.getY()-arrowPosition.getY())/SPEED;

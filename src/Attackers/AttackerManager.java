@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Attackers.Entities.Barbarian;
 import Attackers.Interfaces.Attacker;
+import UI.Bank;
 import edu.macalester.graphics.CanvasWindow;
 
 public class AttackerManager {
@@ -17,8 +18,8 @@ public class AttackerManager {
         this.canvas = canvas;
     }
 
-    public Barbarian createBarbarian(double x, double y){
-        barbarian = new Barbarian(x, y, canvas, attackers);
+    public Barbarian createBarbarian(double x, double y, Bank bank){
+        barbarian = new Barbarian(x, y, canvas, attackers, bank);
         attackers.add(barbarian);
         canvas.add(barbarian.getGraphics());
         return barbarian;

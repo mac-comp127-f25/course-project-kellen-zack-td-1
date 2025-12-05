@@ -7,6 +7,7 @@ import java.util.Random;
 import Attackers.Interfaces.Attacker;
 import Attackers.Interfaces.Damagable;
 import Overall.Entity;
+import UI.Bank;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
 
@@ -27,8 +28,9 @@ public class Barbarian implements Entity, Attacker, Damagable {
     private ArrayList<Attacker> attackers;
     private double moveX = random.nextDouble(-10, 10);
     private double moveY = random.nextDouble(-10, 10);
+    private Bank bank;
 
-    public Barbarian(double x, double y, CanvasWindow canvas, ArrayList<Attacker> attackers){
+    public Barbarian(double x, double y, CanvasWindow canvas, ArrayList<Attacker> attackers, Bank bank){
         this.canvas = canvas;
         this.attackers = attackers;
         this.x = x;
@@ -38,6 +40,7 @@ public class Barbarian implements Entity, Attacker, Damagable {
         barbarian.setFillColor(Color.RED);
         health = STARTING_HEALTH;
         isAlive = true;
+        this.bank = bank;
     }
     
     public void randomizeMovement(){
@@ -98,11 +101,10 @@ public class Barbarian implements Entity, Attacker, Damagable {
 
     }
 
-    public void takeDamage(int amount, int money){
+    public void takeDamage(int amount){
         health-=amount;
         if(health <= 0){
             perish();
-            money+=COST;
         }
     }
 
@@ -118,9 +120,9 @@ public class Barbarian implements Entity, Attacker, Damagable {
         if(this.isAlive){
             canvas.remove(barbarian);
             attackers.remove(this);
+            bank.addMoney(COST);
             this.isAlive = false;
         }
-        
     }
 
     public int getHealth(){

@@ -13,7 +13,7 @@ public interface Defender {
     int getDamagePerShot();
     double getFireRate();
 
-    void attack(Attacker target, int money);
+    void attack(Attacker target);
     void place(double x, double y);
     void removeShadow();
     void addShadow();
