@@ -28,6 +28,10 @@ public class Bank {
         return money;
     }
 
+    public void updateMoney(){
+        moneyText.setText("$" + money);
+    }
+
     public int getMoney(){
         return money;
     }

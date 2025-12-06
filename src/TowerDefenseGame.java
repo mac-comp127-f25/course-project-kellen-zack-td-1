@@ -38,7 +38,7 @@ public class TowerDefenseGame {
         attackerManager = new AttackerManager(canvas);
         defenderManager = new DefenderManager(canvas);
 
-        for(int i = -10; i > -1500; i-=10){
+        for(int i = -10; i > -1500; i-=30){
             attackerManager.createBarbarian(120, i);
         }
 
@@ -56,6 +56,7 @@ public class TowerDefenseGame {
         canvas.animate(() -> {
             defenderManager.attack(attackerManager.getAttackers());
             attackerManager.move();
+            bank.updateMoney();
         });
     }
 

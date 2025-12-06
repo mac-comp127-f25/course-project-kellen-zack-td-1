@@ -14,7 +14,7 @@ import edu.macalester.graphics.Ellipse;
 public class Barbarian implements Entity, Attacker, Damagable {
     private static final double RADIUS = 10;
     private static final int COST = 25;
-    private static final int STARTING_HEALTH = 100;
+    private static final int STARTING_HEALTH = 200;
     private static final double SPEED = 5;
 
     Random random = new Random();
