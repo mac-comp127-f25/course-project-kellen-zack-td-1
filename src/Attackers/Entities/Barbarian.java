@@ -15,7 +15,7 @@ public class Barbarian implements Entity, Attacker, Damagable {
     private static final double RADIUS = 10;
     private static final int COST = 25;
     private static final int STARTING_HEALTH = 20;
-    private static final double SPEED = 5;
+    private static final double SPEED = 20;
     private static final int HITS = 1;
 
     Random random = new Random();
@@ -109,15 +109,7 @@ public class Barbarian implements Entity, Attacker, Damagable {
     }
 
     public boolean checkBounds(){
-        if(barbarian.getX() > canvas.getWidth() || barbarian.getX() < 0 || barbarian.getY() > canvas.getHeight() || barbarian.getY() < 0){
-            perish();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkFinish(){
-        if(barbarian.getX() > canvas.getWidth()){
+        if(barbarian.getX() > canvas.getWidth() || barbarian.getX() < 0 || barbarian.getY() > canvas.getHeight()){
             this.isAlive = false;
             perish();
             return true;

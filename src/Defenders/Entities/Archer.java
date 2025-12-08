@@ -12,7 +12,7 @@ import edu.macalester.graphics.Ellipse;
 public class Archer implements Entity, Defender {
     
     private static final double RADIUS = 10;
-    private static final int RANGE_RADIUS = 100;
+    private static final int RANGE_RADIUS = 115;
     private static final Color SHADOW_COLOR = new Color(128, 128, 128, 20);
     private static final Color ARCHER_COLOR = new Color(97, 29, 173);
     private static final int COST = 50; 

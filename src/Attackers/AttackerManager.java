@@ -25,7 +25,10 @@ public class AttackerManager {
     }
 
     public void move(){
-        attackers.getLast().checkFinish();
+        if(attackers.isEmpty()){
+            return;
+        }
+        attackers.getFirst().checkBounds();
         for(Attacker attacker : attackers){
             attacker.move();
         }

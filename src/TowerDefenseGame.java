@@ -56,11 +56,32 @@ public class TowerDefenseGame {
      */
     public void moveAttackers(){
         canvas.animate(() -> {
-            defenderManager.attack(attackerManager.getAttackers());
-            attackerManager.move();
-            bank.updateLives();
-            bank.updateMoney();
+            if(bank.getLives() == 0){
+                lose();
+                bank.subtractLives(1);
+            }
+            if(bank.getLives() > 0){
+                defenderManager.attack(attackerManager.getAttackers());
+                attackerManager.move();
+                bank.updateLives();
+                bank.updateMoney();
+            }
         });
+    }
+
+    /**
+     * Put up a "You Lose" screen
+     */
+    public void lose(){
+        canvas.removeAll();
+        canvas.setBackground(Color.DARK_GRAY);
+        GraphicsText loseText = new GraphicsText();
+        loseText.setScale(8);
+        loseText.setCenter(canvas.getWidth()/2 - 250, canvas.getHeight()/2);
+        loseText.setText("YOU LOSE");
+        loseText.setFillColor(Color.RED);
+        canvas.add(loseText);
+
     }
 
     /**
@@ -71,7 +92,7 @@ public class TowerDefenseGame {
         addArcherButton.setPosition(canvas.getWidth()-addArcherButton.getWidth(), 5);
         canvas.add(addArcherButton);
         addArcherButton.onClick(() -> {
-            if(bank.getMoney() >= archer.getCost()){
+            if(bank.getMoney() >= archer.getCost() && bank.getLives() > 0){
                 bank.subtractMoney(archer.getCost());
                 archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
                 handleArcherButton();
@@ -82,10 +103,12 @@ public class TowerDefenseGame {
         nextWaveButton.setPosition(0, 0);
         canvas.add(nextWaveButton);
         nextWaveButton.onClick(() -> {
-            for(int i = -10; i > -1500; i-=30){
-                attackerManager.createBarbarian(120, i);
+            if(attackerManager.getAttackers().size() == 0 && bank.getLives() > 0){
+                for(int i = -10; i > -1500; i-=30){
+                    attackerManager.createBarbarian(120, i);
+                }
+                moveAttackers();
             }
-            moveAttackers();
         });
     }
 

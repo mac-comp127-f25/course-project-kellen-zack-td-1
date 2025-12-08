@@ -12,6 +12,5 @@ public interface Attacker {
 
     void takeDamage(int amount);
     boolean checkBounds();
-    boolean checkFinish();
 
 }
