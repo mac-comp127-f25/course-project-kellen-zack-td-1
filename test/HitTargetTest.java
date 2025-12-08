@@ -14,6 +14,7 @@ public class HitTargetTest {
     }
 
     private static final int STARTING_MONEY = 100;
+    private static final int STARTING_LIVES = 50;
     
     private Random random = new Random();
 
@@ -23,8 +24,8 @@ public class HitTargetTest {
     private DefenderManager defenderManager;
     private AttackerManager attackerManager;
     private Archer archer = new Archer(0, 0);
-    private Bank bank = new Bank(STARTING_MONEY);
-    GraphicsText moneyText = bank.getGraphics();
+    private Bank bank = new Bank(STARTING_MONEY, STARTING_LIVES);
+    GraphicsText moneyText = bank.getMoneyGraphics();
 
     public HitTargetTest(int width, int height){
         canvas = new CanvasWindow("Hit Target Test", width, height);

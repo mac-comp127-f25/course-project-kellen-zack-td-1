@@ -17,14 +17,15 @@ public class Archer implements Entity, Defender {
     private static final Color ARCHER_COLOR = new Color(97, 29, 173);
     private static final int COST = 50; 
     private static final int SHOT_DAMAGE = 20;
+    private static final int FIRERATE = 30;
 
-
-    private double fireRate;
+    
     private Ellipse archer;
     private Ellipse rangeShadow;
     private double x;
     private double y;
     private boolean locked;
+    private int frame = 0;
 
     public Archer(double x, double y){
         archer = new Ellipse(x, y, RADIUS*2, RADIUS*2);
@@ -35,16 +36,21 @@ public class Archer implements Entity, Defender {
         archer.setFillColor(ARCHER_COLOR);
         this.x = x;
         this.y = y;
-        fireRate = 1;
         locked = false;
     }
 
 
     public void attack(Attacker target){
-        if(target != null){
-            Arrow arrow = new Arrow(this);
-            arrow.shoot(target);
-            target.takeDamage(SHOT_DAMAGE);
+        if(target != null && locked){
+            if(frame < FIRERATE){
+                frame++;
+            }
+            else{
+                Arrow arrow = new Arrow(this);
+                arrow.shoot(target);
+                target.takeDamage(SHOT_DAMAGE);
+                frame = 0;
+            }
         }
     }
 
@@ -101,7 +107,7 @@ public class Archer implements Entity, Defender {
     }
 
     public double getFireRate(){
-        return this.fireRate;
+        return FIRERATE;
     }
 
     public double getX(){

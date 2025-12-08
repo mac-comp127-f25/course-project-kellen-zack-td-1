@@ -25,6 +25,7 @@ public class AttackerManager {
     }
 
     public void move(){
+        attackers.getLast().checkFinish();
         for(Attacker attacker : attackers){
             attacker.move();
         }

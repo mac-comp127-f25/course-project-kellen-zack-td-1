@@ -18,6 +18,7 @@ public class TowerDefenseGame {
     }
 
     private static final int STARTING_MONEY = 100;
+    private static final int STARTING_LIVES = 50;
     private static final Color BACKGROUND_COLOR = new Color(70, 135, 27);
     private static final Color PATH_COLOR = Color.GRAY;
 
@@ -27,8 +28,9 @@ public class TowerDefenseGame {
     private DefenderManager defenderManager;
     private AttackerManager attackerManager;
     private Archer archer = new Archer(0, 0);
-    private Bank bank = new Bank(STARTING_MONEY);
-    GraphicsText moneyText = bank.getGraphics();
+    private Bank bank = new Bank(STARTING_MONEY, STARTING_LIVES);
+    GraphicsText moneyText = bank.getMoneyGraphics();
+    GraphicsText livesText = bank.getLivesGraphics();
 
     public TowerDefenseGame(){
         canvas = new CanvasWindow("Tower Defense Game", 1500, 850);
@@ -38,15 +40,15 @@ public class TowerDefenseGame {
         attackerManager = new AttackerManager(canvas);
         defenderManager = new DefenderManager(canvas);
 
-        for(int i = -10; i > -1500; i-=30){
-            attackerManager.createBarbarian(120, i);
-        }
-
         setUpButtons();
 
         canvas.add(moneyText);
         moneyText.setScale(2);
         moneyText.setPosition(canvas.getWidth()/2, canvas.getHeight()/30);
+        
+        canvas.add(livesText);
+        livesText.setScale(1.7);
+        livesText.setPosition(canvas.getWidth() - 85, canvas.getHeight() - 15);
     }
 
     /**
@@ -56,6 +58,7 @@ public class TowerDefenseGame {
         canvas.animate(() -> {
             defenderManager.attack(attackerManager.getAttackers());
             attackerManager.move();
+            bank.updateLives();
             bank.updateMoney();
         });
     }
@@ -79,6 +82,9 @@ public class TowerDefenseGame {
         nextWaveButton.setPosition(0, 0);
         canvas.add(nextWaveButton);
         nextWaveButton.onClick(() -> {
+            for(int i = -10; i > -1500; i-=30){
+                attackerManager.createBarbarian(120, i);
+            }
             moveAttackers();
         });
     }

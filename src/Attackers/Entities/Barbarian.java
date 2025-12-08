@@ -14,8 +14,9 @@ import edu.macalester.graphics.Ellipse;
 public class Barbarian implements Entity, Attacker, Damagable {
     private static final double RADIUS = 10;
     private static final int COST = 25;
-    private static final int STARTING_HEALTH = 200;
+    private static final int STARTING_HEALTH = 20;
     private static final double SPEED = 5;
+    private static final int HITS = 1;
 
     Random random = new Random();
     
@@ -115,12 +116,26 @@ public class Barbarian implements Entity, Attacker, Damagable {
         return false;
     }
 
+    public boolean checkFinish(){
+        if(barbarian.getX() > canvas.getWidth()){
+            this.isAlive = false;
+            perish();
+            return true;
+        }
+        return false;
+    }
+
     public void perish(){
         if(this.isAlive){
             canvas.remove(barbarian);
             attackers.remove(this);
             bank.addMoney(COST);
             this.isAlive = false;
+        }
+        else {
+            canvas.remove(barbarian);
+            attackers.remove(this);
+            bank.subtractLives(HITS);
         }
     }
 
