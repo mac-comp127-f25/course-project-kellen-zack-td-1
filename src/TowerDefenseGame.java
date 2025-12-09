@@ -9,6 +9,7 @@ import java.awt.Color;
 import Attackers.AttackerManager;
 import Defenders.DefenderManager;
 import Defenders.Entities.Archer;
+import Defenders.Entities.Wizard;
 import UI.Bank;
 
 public class TowerDefenseGame {
@@ -17,17 +18,19 @@ public class TowerDefenseGame {
         new TowerDefenseGame();
     }
 
-    private static final int STARTING_MONEY = 100;
+    private static final int STARTING_MONEY = 250;
     private static final int STARTING_LIVES = 50;
     private static final Color BACKGROUND_COLOR = new Color(70, 135, 27);
     private static final Color PATH_COLOR = Color.GRAY;
 
     private CanvasWindow canvas;
     private Button addArcherButton;
+    private Button addWizardButton;
     private Button nextWaveButton;
     private DefenderManager defenderManager;
     private AttackerManager attackerManager;
     private Archer archer = new Archer(0, 0);
+    private Wizard wizard = new Wizard(0, 0);
     private Bank bank = new Bank(STARTING_MONEY, STARTING_LIVES);
     GraphicsText moneyText = bank.getMoneyGraphics();
     GraphicsText livesText = bank.getLivesGraphics();
@@ -56,7 +59,7 @@ public class TowerDefenseGame {
      */
     public void moveAttackers(){
         canvas.animate(() -> {
-            if(bank.getLives() == 0){
+            if(bank.getLives() <= 0){
                 lose();
                 bank.subtractLives(1);
             }
@@ -95,7 +98,18 @@ public class TowerDefenseGame {
             if(bank.getMoney() >= archer.getCost() && bank.getLives() > 0){
                 bank.subtractMoney(archer.getCost());
                 archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
-                handleArcherButton();
+                handlePlacement();
+            }
+        });
+
+        addWizardButton = new Button("Wizard: $500");
+        addWizardButton.setPosition(canvas.getWidth()-addWizardButton.getWidth(), addArcherButton.getHeight() + 10);
+        canvas.add(addWizardButton);
+        addWizardButton.onClick(() -> {
+            if(bank.getMoney() >= wizard.getCost() && bank.getLives() > 0){
+                bank.subtractMoney(wizard.getCost());
+                wizard = defenderManager.createWizard(addWizardButton.getX(), addWizardButton.getY());
+                handlePlacement();
             }
         });
 
@@ -105,7 +119,12 @@ public class TowerDefenseGame {
         nextWaveButton.onClick(() -> {
             if(attackerManager.getAttackers().size() == 0 && bank.getLives() > 0){
                 for(int i = -10; i > -1500; i-=30){
-                    attackerManager.createBarbarian(120, i);
+                    if(i < -15 && i >= -210 || i < -240){
+                        attackerManager.createBarbarian(120, i);
+                    }
+                    else{
+                        attackerManager.createGolem(120, i);
+                    }
                 }
                 moveAttackers();
             }
@@ -115,12 +134,14 @@ public class TowerDefenseGame {
     /**
      * Handles the placement of archers
      */
-    public void handleArcherButton(){
+    public void handlePlacement(){
         canvas.onDrag(e -> {
             archer.move(e.getPosition().getX(), e.getPosition().getY());
+            wizard.move(e.getPosition().getX(), e.getPosition().getY());
         });
         canvas.onMouseUp(e -> {
             archer.place(e.getPosition().getX(), e.getPosition().getY());
+            wizard.place(e.getPosition().getX(), e.getPosition().getY());
         });
     }
 

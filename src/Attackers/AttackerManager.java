@@ -3,6 +3,7 @@ package Attackers;
 import java.util.ArrayList;
 
 import Attackers.Entities.Barbarian;
+import Attackers.Entities.Golem;
 import Attackers.Interfaces.Attacker;
 import edu.macalester.graphics.CanvasWindow;
 
@@ -11,6 +12,7 @@ public class AttackerManager {
     private ArrayList<Attacker> attackers;
     private CanvasWindow canvas;
     private Barbarian barbarian;
+    private Golem golem;
 
     public AttackerManager(CanvasWindow canvas){
         attackers = new ArrayList<Attacker>();
@@ -24,13 +26,22 @@ public class AttackerManager {
         return barbarian;
     }
 
+    public Golem createGolem(double x, double y){
+        golem = new Golem(x, y, canvas, attackers);
+        attackers.add(golem);
+        canvas.add(golem.getGraphics());
+        return golem;
+    }
+
     public void move(){
         if(attackers.isEmpty()){
             return;
         }
-        attackers.getFirst().checkBounds();
         for(Attacker attacker : attackers){
             attacker.move();
+            if(attacker.checkBounds()){
+                return;
+            }
         }
     }
 
