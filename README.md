@@ -1,3 +1,17 @@
-# Project Title Goes Here
+# Tower Defense Game
 
-Info about your project goes here
+# Project Overview
+Our code is a tower defense game; Protect the land by purchasing and dragging troops on to land, defeating attackers, and earning money. Lose too many lives by not defeating attackers and Game Over.
+
+# Technical Guide
+In order to run this game you will have to have Java 17/21 Installed and running on your machine. We used (edu.macalester.graphics.CanvasWindow) to implement a canvas window as well as implement the graphics of our classes. We used (edu.macalester.graphics.ui.button and edu.macalester.graphic.ui.graphicsText) to create an accessible and easy to use user interface. We used array lists to manage and track the amount of attackers we produce. The organization of our code is split up into classes and a main running class. To do this we separated our path, defenders, attackers, arrows, and our bank into individual classes. Then we implemented these components into our main class called “TowerDefenseGame”. This class is where you can click the run button and play our game.
+
+# Inspiration
+Our inspiration was a game called Bloons TD6; this is a popular tower defense game that is available on the app store that uses monkeys as defenders and balloons as attackers. We both played this game when we were younger and thought it would be fun but also a challenging task to recreate this game that we both enjoy.
+
+# Known issues
+One known issue we have encountered is the ability to add the troops onto the path. This is unrealistic and doesn’t follow the norm of popular and current tower defense games. We chose not to attack this problem as it wouldn’t change the function of the game as well as the implementation would require object and collision tracking as well as the ability to lock the troop and restrict placement we found difficult. We chose to focus on perfecting the function of our game rather than attacking little inconsequential problems.
+
+# Societal Impact
+We acknowledge that our code/game may not be accessible to everyone as it requires control of the keyboard and vision to play it. This could limit people that may have difficulty controlling a keyboard. We also run into an issue where we don’t have any audio cues which could help a blind individual play and access our game. A way to work around these issues would be implementing audio cues, eye tracking mechanisms to control the cursor and clicks, also maybe bigger fonts and bigger buttons for people who may have less impairing vision issues. Lastly we can implement color blind modes that will help people with color blindness experience the full version of the game. 
+We acknowledge potential malicious applications of our game; The game is literally defenders shooting and killing enemy attackers for the purpose of protecting the castle, this could be an issue if this game is given to a child that is too young to play. If this game is given to children that are too young it may incite a violence or mindset that isn’t beneficial to the young state of mind. We also recognise that the choice of color could have some unintended consequences, if we would have picked and pinned flag colors of countries this could have been an issue, but we did our best to keep the colors bland to avoid any potential harm we could cause. Overall we recommend that people of 12 years or more play this game to avoid potential harm.
