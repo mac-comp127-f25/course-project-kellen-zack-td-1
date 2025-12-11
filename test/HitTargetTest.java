@@ -1,0 +1,92 @@
+/**
+ * This class is a test. This is to test the functionality of defenders shooting the correct targets and only within their range
+ */
+
+import java.util.Random;
+
+import Attackers.AttackerManager;
+import Defenders.DefenderManager;
+import Defenders.Entities.Archer;
+import UI.Bank;
+import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.ui.Button;
+
+public class HitTargetTest {
+    public static void main(String[] args) {
+        new HitTargetTest(1500, 850);
+    }
+
+    private static final int STARTING_MONEY = 100;
+    private static final int STARTING_LIVES = 50;
+    
+    private Random random = new Random();
+
+    private CanvasWindow canvas;
+    private Button addArcherButton;
+    private Button addAttackersButton;
+    private DefenderManager defenderManager;
+    private AttackerManager attackerManager;
+    private Archer archer = new Archer(0, 0);
+    private Bank bank = new Bank(STARTING_MONEY, STARTING_LIVES);
+    GraphicsText moneyText = bank.getMoneyGraphics();
+
+    public HitTargetTest(int width, int height){
+        canvas = new CanvasWindow("Hit Target Test", width, height);
+        attackerManager = new AttackerManager(canvas);
+        defenderManager = new DefenderManager(canvas);
+        
+
+        setUpButtons();
+        canvas.add(moneyText);
+        moneyText.setScale(2);
+        moneyText.setPosition(canvas.getWidth()/2, canvas.getHeight()/30);
+        
+    }
+
+    /**
+     * Sets up the buttons and their functionalities
+     */
+    public void setUpButtons(){
+        addArcherButton = new Button("Archer: $50");
+        canvas.add(addArcherButton);
+        addArcherButton.onClick(() -> {
+            if(bank.getMoney() >= archer.getCost()){
+                bank.subtractMoney(archer.getCost());
+                archer = defenderManager.createArcher(addArcherButton.getX(), addArcherButton.getY());
+                handleArcherButton();
+            }
+        });
+
+        addAttackersButton = new Button("Add Attackers");
+        addAttackersButton.setPosition(0, addArcherButton.getHeight());
+        canvas.add(addAttackersButton);
+        addAttackersButton.onClick(() -> {
+            for(int i = 0; i < 10; i++){
+                attackerManager.createBarbarian(random.nextDouble(canvas.getWidth()), random.nextDouble(canvas.getHeight()));
+            }
+        });
+
+        Button moveAttackers = new Button("Move Attackers");
+        moveAttackers.setPosition(0, addAttackersButton.getHeight()*2);
+        canvas.add(moveAttackers);
+        moveAttackers.onClick(() -> {
+            canvas.animate(() -> {
+                defenderManager.attack(attackerManager.getAttackers());
+                attackerManager.moveRandom();
+            });
+        });
+    }
+
+    /**
+     * Handles the placement of archers
+     */
+    public void handleArcherButton(){
+        canvas.onDrag(e -> {
+            archer.move(e.getPosition().getX(), e.getPosition().getY());
+        });
+        canvas.onMouseUp(e -> {
+            archer.place(e.getPosition().getX(), e.getPosition().getY());
+        });
+    }
+}
