@@ -1,3 +1,7 @@
+/**
+ * This class is a manager for all defender objects
+ */
+
 package Defenders;
 
 import java.util.ArrayList;
@@ -20,6 +24,12 @@ public class DefenderManager {
         this.canvas = canvas;
     }
 
+    /**
+     * Create an archer at the x and y provided along with the range shadow and add to the canvas
+     * @param x
+     * @param y
+     * @return the Archer Object created
+     */
     public Archer createArcher(double x, double y){
         archer = new Archer(x, y);
         defenders.add(archer);
@@ -28,6 +38,12 @@ public class DefenderManager {
         return archer;
     }
 
+    /**
+     * Create a Wizard at the x and y provided along with the range shadow and add to the canvas
+     * @param x
+     * @param y
+     * @return the Wizard Object created
+     */
     public Wizard createWizard(double x, double y){
         wizard = new Wizard(x, y);
         defenders.add(wizard);
@@ -36,12 +52,19 @@ public class DefenderManager {
         return wizard;
     }
 
+    /**
+     * Make every defender created attack their own closest attacker
+     * @param attackers
+     */
     public void attack(ArrayList<Attacker> attackers){
         for(Defender defender : defenders){
             defender.attack(defender.findClosestTarget(attackers));
         }
     }
 
+    /**
+     * @return list of all defenders created
+     */
     public ArrayList<Defender> getDefenders(){
         return defenders;
     }

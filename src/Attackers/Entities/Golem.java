@@ -1,3 +1,7 @@
+/**
+ * This class provides the properties and function of a Golem
+ */
+
 package Attackers.Entities;
 
 import java.awt.Color;
@@ -43,12 +47,18 @@ public class Golem implements Entity, Attacker, Damagable {
         isAlive = true;
     }
     
+    /**
+     * Randomizes the movement/direction of the golem
+     */
     public void randomizeMovement(){
         golem.moveBy(moveX, moveY);
         x+=moveX;
         y+=moveY;
     }
 
+    /**
+     * Move the golem on the set path
+     */
     public void move(){
         if(getY() < 120){
             golem.moveBy(0, SPEED);
@@ -101,6 +111,10 @@ public class Golem implements Entity, Attacker, Damagable {
 
     }
 
+    /**
+     * Subtract the given amount of damage from the health of the golem and test to see if health hits or goes below zero
+     * @param amount of damage
+     */
     public void takeDamage(int amount){
         health-=amount;
         if(health <= 0){
@@ -108,6 +122,9 @@ public class Golem implements Entity, Attacker, Damagable {
         }
     }
 
+    /**
+     * Check if golem has finished the path
+     */
     public boolean checkBounds(){
         if(golem.getX() > canvas.getWidth() || golem.getX() < 0 || golem.getY() > canvas.getHeight()){
             this.isAlive = false;
@@ -117,6 +134,9 @@ public class Golem implements Entity, Attacker, Damagable {
         return false;
     }
 
+    /**
+     * Checks whether the golem is alive, if not add money to the bank, if so subtract lives, remove from canvas either way
+     */
     public void perish(){
         if(this.isAlive){
             canvas.remove(golem);
@@ -131,22 +151,37 @@ public class Golem implements Entity, Attacker, Damagable {
         }
     }
 
+    /**
+     * @return The health of the golem
+     */
     public int getHealth(){
         return health;
     }
 
+    /**
+     * @return whether the golem is alive or not
+     */
     public boolean isAlive(){
         return isAlive;
     }
 
+    /**
+     * @return x position of the golem
+     */
     public double getX(){
         return x;
     }
 
+    /**
+     * @return y position of the golem
+     */
     public double getY(){
        return y; 
     }
 
+    /**
+     * @return the Ellipse Object of the golem on the canvas
+     */
     public Ellipse getGraphics(){
         return golem;
     }

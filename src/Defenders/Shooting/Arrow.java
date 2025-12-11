@@ -1,3 +1,7 @@
+/**
+ * This class is for the properties and function of an Archer's arrow
+ */
+
 package Defenders.Shooting;
 
 import java.awt.Color;
@@ -26,8 +30,10 @@ public class Arrow implements Shootable{
         archer.getGraphics().getCanvas().add(arrow);
     }
 
-
-    //TODO: Figure out math for shooting at moving targets
+    /**
+     * Create the graphics to move the arrow from the archer to the attacker
+     * @param attacker
+     */
     public void shoot(Attacker attacker){
         final int SPEED = 2;
         archer.getGraphics().getCanvas().draw();
@@ -40,6 +46,10 @@ public class Arrow implements Shootable{
         archer.getGraphics().getCanvas().remove(arrow);
     }
 
+
+    /**
+     * @return the Recatngle object that shows on the canvas for the arrow
+     */
     public Rectangle getGraphics(){
         return arrow;
     }

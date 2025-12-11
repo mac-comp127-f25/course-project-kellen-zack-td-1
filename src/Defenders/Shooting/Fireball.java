@@ -1,3 +1,7 @@
+/**
+ * This class is for the properties and function of a Wizard's fireball
+ */
+
 package Defenders.Shooting;
 
 import java.awt.Color;
@@ -24,6 +28,10 @@ public class Fireball {
         wizard.getGraphics().getCanvas().add(fireball);
     }
 
+    /**
+     * Create the graphics to move the fireball from the wizard to the attacker
+     * @param attacker
+     */
     public void shoot(Attacker attacker){
         final int SPEED = 2;
         wizard.getGraphics().getCanvas().draw();
@@ -36,6 +44,9 @@ public class Fireball {
         wizard.getGraphics().getCanvas().remove(fireball);
     }
 
+    /**
+     * @return the Recatngle object that shows on the canvas for the arrow
+     */
     public Rectangle getGraphics(){
         return fireball;
     }

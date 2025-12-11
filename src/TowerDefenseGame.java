@@ -1,3 +1,7 @@
+/**
+ * This class is the main method to run the Tower Defense Game
+ */
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Rectangle;

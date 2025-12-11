@@ -1,3 +1,7 @@
+/**
+ * This class is a test. This is to test the functionality of defenders shooting the correct targets and only within their range
+ */
+
 import java.util.Random;
 
 import Attackers.AttackerManager;

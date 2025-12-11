@@ -1,3 +1,7 @@
+/**
+ * This is an interface for all Attckers that can be created
+ */
+
 package Attackers.Interfaces;
 
 public interface Attacker {

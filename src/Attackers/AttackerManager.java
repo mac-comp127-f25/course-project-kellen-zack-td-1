@@ -1,3 +1,7 @@
+/**
+ * This class is a manager for all attacker objects
+ */
+
 package Attackers;
 
 import java.util.ArrayList;
@@ -19,6 +23,12 @@ public class AttackerManager {
         this.canvas = canvas;
     }
 
+    /**
+     * Create a barbarian at the x and y provided and add to the canvas
+     * @param x
+     * @param y
+     * @return the Barbarian Object created
+     */
     public Barbarian createBarbarian(double x, double y){
         barbarian = new Barbarian(x, y, canvas, attackers);
         attackers.add(barbarian);
@@ -26,6 +36,12 @@ public class AttackerManager {
         return barbarian;
     }
 
+    /**
+     * Create a Golem at the x and y provided and add to the canvas
+     * @param x
+     * @param y
+     * @return the Golem Object created
+     */
     public Golem createGolem(double x, double y){
         golem = new Golem(x, y, canvas, attackers);
         attackers.add(golem);
@@ -33,6 +49,9 @@ public class AttackerManager {
         return golem;
     }
 
+    /**
+     * Moves each attacker along the set path and check if the attacker is out of bounds of the canvas
+     */
     public void move(){
         if(attackers.isEmpty()){
             return;
@@ -45,6 +64,9 @@ public class AttackerManager {
         }
     }
 
+    /**
+     * This method is for the test class which moves each attacker in a random way
+     */
     public void moveRandom(){
         for(Attacker attacker : attackers){
             attacker.randomizeMovement();
@@ -54,6 +76,9 @@ public class AttackerManager {
         }
     }
 
+    /**
+     * @return the list of all attackers created
+     */
     public ArrayList<Attacker> getAttackers(){
         return attackers;
     }

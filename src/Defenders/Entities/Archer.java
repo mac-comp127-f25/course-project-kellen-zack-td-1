@@ -1,3 +1,7 @@
+/**
+ * This class provides the properties and function of an Archer
+ */
+
 package Defenders.Entities;
 
 import java.awt.Color;
@@ -39,7 +43,10 @@ public class Archer implements Entity, Defender {
         locked = false;
     }
 
-
+    /**
+     * Make the Archer shoot an arrow at the provided target
+     * @param target
+     */
     public void attack(Attacker target){
         if(target != null && locked){
             if(frame < FIRERATE){
@@ -54,6 +61,11 @@ public class Archer implements Entity, Defender {
         }
     }
 
+    /**
+     * This method allows the archer to be moved by the user
+     * @param x
+     * @param y
+     */
     public void move(double x, double y){
         if(!locked){
             this.getGraphics().setCenter(x, y);
@@ -63,6 +75,11 @@ public class Archer implements Entity, Defender {
         }
     }
 
+    /**
+     * Sets the position of the archer and locks it so it cannot be moved again
+     * @param x
+     * @param y
+     */
     public void place(double x, double y){
         if(!locked){
             this.getGraphics().setCenter(x, y);
@@ -73,6 +90,10 @@ public class Archer implements Entity, Defender {
         }
     }
 
+    /**
+     * @param attackers
+     * @return Attcker which is the closest to the archer
+     */
     public Attacker findClosestTarget(ArrayList<Attacker> attackers){
         Attacker closestAttacker = null;
         double closestDist = RANGE_RADIUS;
@@ -86,46 +107,72 @@ public class Archer implements Entity, Defender {
         return closestAttacker;
     }
 
-    public void removeShadow(){
-        archer.getCanvas().remove(rangeShadow);
-    }
-
+    /**
+     * Add a range shadow onto the archer on the canvas
+     */
     public void addShadow(){
         archer.getCanvas().add(rangeShadow);
     }
     
+    /**
+     * @return the cost of the archer
+     */
     public int getCost(){
         return COST;
     }
 
+    /**
+     * @return the radius of range of the archer
+     */
     public int getRangeRadius(){
         return RANGE_RADIUS;
     }
 
+    /**
+     * @return the damage the archer does to an attacker
+     */
     public int getDamagePerShot(){
         return SHOT_DAMAGE;
     }
 
+    /**
+     * @return how many frames pass before the archer shoots each arrow
+     */
     public double getFireRate(){
         return FIRERATE;
     }
 
+    /**
+     * @return the x position of the archer
+     */
     public double getX(){
         return x;
     }
 
+    /**
+     * @return the y position of the archer
+     */
     public double getY(){
         return y;
     }
 
+    /**
+     * @return whether the archer is locked in place or not
+     */
     public boolean isLocked(){
         return locked;
     }
 
+    /**
+     * @return the Ellipse of the archer on the canvas
+     */
     public Ellipse getGraphics(){
         return archer;
     }
 
+    /**
+     * @return the Ellipse on the canvas of the range shadow on the archer
+     */
     public Ellipse getShadow(){
         return rangeShadow;
     }

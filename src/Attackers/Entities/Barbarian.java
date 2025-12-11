@@ -1,3 +1,7 @@
+/**
+ * This class provides the properties and function of a Barbarian
+ */
+
 package Attackers.Entities;
 
 import java.awt.Color;
@@ -43,12 +47,18 @@ public class Barbarian implements Entity, Attacker, Damagable {
         isAlive = true;
     }
     
+    /**
+     * Randomizes the movement/direction of the barbarian
+     */
     public void randomizeMovement(){
         barbarian.moveBy(moveX, moveY);
         x+=moveX;
         y+=moveY;
     }
 
+    /**
+     * Move the barbarian on the set path
+     */
     public void move(){
         if(getY() < 120){
             barbarian.moveBy(0, SPEED);
@@ -101,6 +111,10 @@ public class Barbarian implements Entity, Attacker, Damagable {
 
     }
 
+    /**
+     * Subtract the given amount of damage from the health of the barbarian and test to see if health hits or goes below zero
+     * @param amount of damage
+     */
     public void takeDamage(int amount){
         health-=amount;
         if(health <= 0){
@@ -108,6 +122,9 @@ public class Barbarian implements Entity, Attacker, Damagable {
         }
     }
 
+    /**
+     * Check if barbarian has finished the path
+     */
     public boolean checkBounds(){
         if(barbarian.getX() > canvas.getWidth() || barbarian.getX() < 0 || barbarian.getY() > canvas.getHeight()){
             this.isAlive = false;
@@ -117,6 +134,9 @@ public class Barbarian implements Entity, Attacker, Damagable {
         return false;
     }
 
+    /**
+     * Checks whether the barbarian is alive, if not add money to the bank, if so subtract lives, remove from canvas either way
+     */
     public void perish(){
         if(this.isAlive){
             canvas.remove(barbarian);
@@ -131,22 +151,37 @@ public class Barbarian implements Entity, Attacker, Damagable {
         }
     }
 
+    /**
+     * @return The health of the barbarian
+     */
     public int getHealth(){
         return health;
     }
 
+    /**
+     * @return whether the barbarian is alive or not
+     */
     public boolean isAlive(){
         return isAlive;
     }
 
+    /**
+     * @return x position of the barbarian
+     */
     public double getX(){
         return x;
     }
 
+    /**
+     * @return y position of the barbarian
+     */
     public double getY(){
        return y; 
     }
 
+    /**
+     * @return the Ellipse Object of the barbarian on the canvas
+     */
     public Ellipse getGraphics(){
         return barbarian;
     }

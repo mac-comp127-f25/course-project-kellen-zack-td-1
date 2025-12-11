@@ -1,8 +1,9 @@
-package Attackers.Interfaces;
-
 /**
  * Interface for entities that can take damage
  */
+
+package Attackers.Interfaces;
+
 public interface Damagable {
     
     /**

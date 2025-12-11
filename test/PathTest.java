@@ -1,3 +1,7 @@
+/**
+ * This class is a test. This is to test the functionality of the path graphics and defenders following the path correctly
+ */
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Rectangle;
